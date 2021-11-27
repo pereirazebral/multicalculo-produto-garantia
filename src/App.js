@@ -1,34 +1,26 @@
-import logo from './logo.svg';
-import { InputText } from 'primereact/inputtext';
-import './App.css';
-import 'primereact/resources/themes/lara-light-indigo/theme.css'    //theme
-import 'primereact/resources/primereact.min.css'                    //core css
-import 'primeicons/primeicons.css'                                  //icons
-import 'vtex-tachyons' //css flex
+
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-
-        <div className="flex">
-          <InputText value={'banana'} onChange={(e) => console.log(e.target.value)} />
-        </div>
-
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+      </Routes>
     </div>
   );
 }
+
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
 
 export default App;

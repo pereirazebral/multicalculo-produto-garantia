@@ -1,11 +1,15 @@
 {
-  "name": "my-app",
+  "name": "multicalculo-produto-garantia",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "gulp": "^4.0.2",
+    "gulp-sass-helper": "^1.17.0",
+    "primeicons": "^5.0.0",
+    "primereact": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",

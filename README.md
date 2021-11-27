@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# MultiCálculo Produto Garantia React App
+
+## Instalar gulp para compilar arquivos scss
+Rodar o comando no terminal: `npm install --global gulp-cli`
+
+## Instalar todos dependencias necessárias
+Rodar o comando no terminal: `yarn install`
+Rodar o comando no terminal: `npm install`
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

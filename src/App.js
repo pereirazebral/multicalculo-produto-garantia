@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import { InputText } from 'primereact/inputtext';
 import './App.css';
-// import 'primereact/resources/themes/lara-light-indigo/theme.css'    //theme
-// import 'primereact/resources/primereact.min.css'                    //core css
-// import 'primeicons/primeicons.css'                                  //icons
+import 'primereact/resources/themes/lara-light-indigo/theme.css'    //theme
+import 'primereact/resources/primereact.min.css'                    //core css
+import 'primeicons/primeicons.css'                                  //icons
+import 'vtex-tachyons' //css flex
 function App() {
   return (
     <div className="App">
@@ -21,7 +22,9 @@ function App() {
           Learn React
         </a>
 
-        <InputText value={'banana'} onChange={(e) => console.log(e.target.value)} />
+        <div className="flex">
+          <InputText value={'banana'} onChange={(e) => console.log(e.target.value)} />
+        </div>
 
       </header>
     </div>

@@ -1,0 +1,10 @@
+{
+    "logo": "https://asiainsurtechpodcast.com/wp-content/uploads/2020/02/eBaoTech-Corp.png",
+    "logo_dark_mode": "https://asiainsurtechpodcast.com/wp-content/uploads/2020/02/eBaoTech-Corp.png",
+    "login_title": "Acessar o Portal do Corretor",
+    "placeholder_input_user": "E-mail",
+    "placeholder_input_password": "Senha",
+    "label_button_link_password_recover": "Esqueci minha senha",
+    "label_button_login": "Fazer login",
+    "label_dark_mode": "Modo escuro"
+}

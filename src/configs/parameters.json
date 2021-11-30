@@ -1,10 +1,18 @@
 {
     "logo": "https://asiainsurtechpodcast.com/wp-content/uploads/2020/02/eBaoTech-Corp.png",
     "logo_dark_mode": "https://asiainsurtechpodcast.com/wp-content/uploads/2020/02/eBaoTech-Corp.png",
-    "login_title": "Acessar o Portal do Corretor",
+    "title_login": "Acessar o Portal do Corretor",
     "placeholder_input_user": "E-mail",
+    "label_input_user_invalid": "Por favor, digite um e-mail.",
     "placeholder_input_password": "Senha",
+    "label_input_password_invalid": "Por favor, digite uma senha.",
     "label_button_link_password_recover": "Esqueci minha senha",
     "label_button_login": "Fazer login",
-    "label_dark_mode": "Modo escuro"
+    "label_dark_mode": "Modo escuro",
+    "label_remember_user" : "Lembrar usuário",
+    "title_modal_password_recover": "Redefinição de senha",
+    "text_modal_password_recover": "Informe o endereço de e-mail cadastrado",
+    "label_enviar": "Enviar",
+    "mensage_title_password_recover_sucess": "E-mail enviado",
+    "mensage_content_password_recover_sucess": "Redefinição de senha enviado por e-mail."
 }

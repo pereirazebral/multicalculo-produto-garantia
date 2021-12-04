@@ -1,8 +1,8 @@
-const TextIsEmpty = (value: string) => {
+const IsNotEmpty = (value: string) => {
     if(value.length === 0){
         return true
     }
     return false
 }
 
-export default TextIsEmpty
+export default IsNotEmpty

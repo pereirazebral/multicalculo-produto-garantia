@@ -3,6 +3,10 @@
 @import 'primeicons/primeicons.css';                                  //icons
 @import '../styles/variables';
 
+html,body{
+    font-size: 16px;
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,7 +14,6 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: calc(10px + 2vmin);
 }
   
 code {
@@ -42,15 +45,21 @@ p{
 
 .p-inputtext,
 .p-password,
-.p-button{
+.p-button,
+.p-button.p-button-icon-only{
     width: 100%;
-    height: 4rem;
-    font-size: 1.05rem !important;
+    height: 3.75rem;
+    font-size: 1rem !important;
 
     @media(max-width: $media-s){
         height: 3rem;
         font-size: 0.80rem !important;
     }
+}
+
+.pi-spin{
+    color: $white;
+    font-size: 1.7rem;
 }
 
 .p-button-link span,

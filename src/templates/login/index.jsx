@@ -1,33 +1,41 @@
 import { useState, useEffect } from 'react';
+import { useFormik } from 'formik';
 import { Image } from 'primereact/image';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { InputSwitch } from 'primereact/inputswitch';
 import ModalPasswordRecover from '../modalPasswordRecover'
 import parameters from '../../configs/parameters.json';
-import TextIsEmpty from '../../utils/validators/TextIsEmpty'
-import InputEmail from '../../components/InputEmail'
+import IsNotEmpty from '../../utils/validators/IsNotEmpty'
+import IsEmail from '../../utils/validators/IsEmail'
+import InputText from '../../components/InputText'
 import { setLocalStorageItem, getLocalStorageItem , removeLocalStorageItem} from "../../utils/localStorage";
 import './login.css';
 
 const Login = ({darkMode, setDarkMode, setIsModalPasswordRecover, notification}) => {
 
-    const [ userEmail, setUserEmail] = useState("")
-    const [ userEmailError, setUserEmailError] = useState(false)
-    const [ userPassword, setUserPassword] = useState('')
-    const [ userPasswordError, setUserPasswordError] = useState(false)
     const [rememberUser, setRememberUser] = useState(false)
+    const [formData, setFormData] = useState({})
+    const [submitLoading, setSubmitLoading] = useState(false)
 
     useEffect(() => {
         if(getLocalStorageItem('remember-user')) {
             setRememberUser(true)
-            setUserEmail(getLocalStorageItem('user'))
         }
     },[]);
 
+    const getRememberUser = () => {
+        
+        if(getLocalStorageItem('remember-user')) {
+            return getLocalStorageItem('user')
+        }
+
+        return ''
+    }
+
     const actionRememberUser = () => {
         if(!rememberUser === true){
-            setLocalStorageItem('user', userEmail)
+            setLocalStorageItem('user', formik.values.email)
         }else{
             removeLocalStorageItem("user")
         }
@@ -35,58 +43,86 @@ const Login = ({darkMode, setDarkMode, setIsModalPasswordRecover, notification})
         setRememberUser(!rememberUser)
       }
 
-    const actionLogin = () => {
-        setUserEmailError(false)
-        if(TextIsEmpty(userEmail)){
-            setUserEmailError(true)
-            return false
-        }
+    const formik = useFormik({
+        initialValues: {
+            email: getRememberUser(),
+            password: '',
+        },
+        validate: (data) => {
+            let errors = {};
 
-        setUserPasswordError(false)
-        if(TextIsEmpty(userPassword)){
-            setUserPasswordError(TextIsEmpty(userPassword))
-            return false
-        }
+            if (IsNotEmpty(data.email) || !IsEmail(data.email)) {
+                errors.email = parameters.admin_parameters_text_email_invalid;
+            }
 
-        if(rememberUser) setLocalStorageItem('user', userEmail)
-    }
+            if (IsNotEmpty(data.password)) {
+                errors.password = parameters.admin_parameters_text_password_invalid
+            }
+
+            return errors;
+        },
+        onSubmit: (data) => {
+            setSubmitLoading(true)
+            setFormData(data);
+            if(rememberUser) setLocalStorageItem('user', data.email)
+            //formik.resetForm(); //limpa o form
+
+            setTimeout(() => {
+                setSubmitLoading(false)
+            },5000);
+        }
+    });
+
+    const isFormFieldValid = (name) => !!(formik.touched[name] && formik.errors[name]);
+    const getFormErrorMessage = (name) => {
+        return formik.errors[name] && formik.errors[name];
+    };
 
     return (
         <div className={`login-container flex flex-column items-center ${darkMode && 'dark-mode'}`}>
-            <Image src={!darkMode?parameters.logo: parameters.logo_dark_mode} alt="Logo" />
-            <h1>{parameters.title_login}</h1>
-            <InputEmail value={userEmail}
-                isError={userEmailError}
-                setEmail={setUserEmail}/>
-            <div className="flex flex-column pt6 pt5-l w-100">
-                <Password id="input_password"
-                    aria-describedby="input_password_help"
-                    className={userPasswordError&&`p-invalid p-d-block`} 
-                    toggleMask 
-                    feedback={false} 
-                    placeholder={parameters.placeholder_input_password}
-                    onChange={(e) => setUserPassword(e.target.value)}
-                    value={userPassword}/>
-                {userPasswordError&&<small id="input_password_help" 
-                    className="p-error p-d-block">{parameters.label_input_password_invalid}</small>}
+            <Image src={!darkMode?parameters.admin_parameters_logo: parameters.admin_parameters_dark_mode_logo} alt="Logo" />
+            <h1>{parameters.admin_parameters_login_title}</h1>
+            <form onSubmit={formik.handleSubmit} className="flex flex-column w-100">
+                <InputText id="email" 
+                    name="email"
+                    value={formik.values.email}
+                    isError={isFormFieldValid('email')}
+                    errorMessage={getFormErrorMessage('email')}
+                    onChange={formik.handleChange}
+                    placeholder={parameters.admin_parameters_text_email}
+                    />
+                <div className="flex flex-column w-100 pt3 pb3">
+                    <Password id="password" 
+                        name="password"
+                        aria-describedby="input_password_help"
+                        className={isFormFieldValid('password')&&`p-invalid p-d-block`} 
+                        toggleMask 
+                        feedback={false} 
+                        placeholder={parameters.admin_parameters_text_password}
+                        onChange={formik.handleChange}
+                        value={formik.values.password}/>
+                    {isFormFieldValid('password')&&<small id="input_password_help" 
+                        className="p-error p-d-block">{getFormErrorMessage('password')}</small>}
+                </div>
+                <div className="flex pt3 pb3 w-100 items-center justify-end">
+                    <p className="text-remember-user">{parameters.admin_parameters_text_remember_user}</p>
+                    <InputSwitch checked={rememberUser} 
+                        onChange={() => actionRememberUser()} />
+                </div>
+                <div className="flex pt3 pb3 w-100">
+                    <Button label={!submitLoading&&parameters.admin_parameters_text_login}
+                        type="submit"
+                        loading={submitLoading} />
+                </div>
+            </form>
+            <div className="flex pt3 pb3 w-100">
+                    <Button label={parameters.admin_parameters_text_password_recover} 
+                    className="p-button-link" 
+                    onClick={() => setIsModalPasswordRecover(true)}/>
             </div>
-            <div className="flex pt3 pt5 w-100 items-center justify-end">
-                <p className="text-remember-user">{parameters.label_remember_user}</p>
-                <InputSwitch checked={rememberUser} 
-                    onChange={() => actionRememberUser()} />
-            </div>
-            <div className="flex pt3 pt5 w-100">
-                <Button label={parameters.label_button_link_password_recover} 
-                className="p-button-link" 
-                onClick={() => setIsModalPasswordRecover(true)}/>
-            </div>
-            <div className="flex pt3 pt5 w-100">
-                <Button label={parameters.label_button_login}
-                    onClick={() => actionLogin()}/>
-            </div>
-            <div className="flex pt3 pt5 w-100 items-center justify-center">
+            <div className="flex pt3 pb3 w-100 items-center justify-center">
                 <InputSwitch checked={darkMode} onChange={(e) => setDarkMode( e.value )} />
-                <p className="text-dark-mode">{parameters.label_dark_mode}</p>
+                <p className="text-dark-mode">{parameters.admin_parameters_text_dark_mode}</p>
             </div>
         </div>
     )

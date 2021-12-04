@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.layout-container{
+    min-height: 100vh;
+
+    .layout-content{
+        max-width: 1280px;
+        margin: 20px auto;
+        background-color: $white;
+        border-radius: $border-radius;
+        padding: 20px;
+        min-height: 500px;
+
+        @media(max-width: $media-s) {
+            width: 95%;
+            padding: 10px;
+        }
+
+        &.dark-mode{
+            background-color: $black-surface-e;
+        }
+    }
+}

@@ -4,8 +4,10 @@ import { Routes, Route } from "react-router-dom";
 import { Toast } from 'primereact/toast';
 import { setLocalStorageItem, getLocalStorageItem } from "../../utils/localStorage";
 import "./app.css";
-import Login from '../login/index'
-
+import routes from '../../configs/routes.json'
+import Login from '../login'
+import Layout from '../layout'
+import Proposta from '../proposta'
 function App() {
  
   const notification = useRef(null);
@@ -29,11 +31,16 @@ function App() {
           setDarkMode={actionDarkMode}
           notification={notification}/>
         }/>
-        <Route path="/login" 
+        <Route path={routes.LOGIN} 
           element={
             <Login  darkMode={darkMode}
               setDarkMode={actionDarkMode}/>
           }/>
+        <Route path={routes.PROPOSTA_PUBLICO_JUDICIAL_RECURSAL} 
+          element={
+            <Layout  darkMode={darkMode}
+              setDarkMode={actionDarkMode} children={<Proposta darkMode={darkMode}/>}/>
+        }/>
       </Routes>
       <Toast ref={notification} position="bottom-left" />
     </div>

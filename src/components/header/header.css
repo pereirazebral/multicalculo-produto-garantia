@@ -1,0 +1,1 @@
+.header-container{height:5rem;display:flex;align-items:center;justify-content:space-around;padding:20px;background-color:#fff;box-shadow:0 1px 1px -2px #dee2e6;border-bottom:1px solid var(#dee2e6)}.header-container.dark-mode{background-color:#2a323d;border-bottom:1px solid var(#3f4b5b);box-shadow:0 1px 1px 1px #3f4b5b}

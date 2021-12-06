@@ -15,5 +15,11 @@
     "admin_parameters_password_recover_modal_text": "Informe o endereço de e-mail cadastrado",
     "admin_parameters_password_recover_sucess_title": "E-mail enviado",
     "admin_parameters_password_recover_sucess_text": "Redefinição de senha enviado por e-mail.",
+    "admin_parameters_term_validity_sucess_title": "Prazo de vigência",
+    "admin_parameters_term_validity_sucess_text": "O prazo de vigência foi alterado para: ",
+    "admin_parameters_date_init_term_validity_sucess_title": "Data inícial de vigência",
+    "admin_parameters_date_init_term_validity_sucess_text": "A data foi alterada para: ",
+    "admin_parameters_date_end_term_validity_sucess_title": "Data final de vigência",
+    "admin_parameters_date_end_term_validity_sucess_text": "A data foi alterada para: ",
     "admin_parameters_showNotification_time": 5000
 }

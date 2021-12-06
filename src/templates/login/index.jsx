@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Navigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import { Image } from 'primereact/image';
 import { Password } from 'primereact/password';
@@ -17,7 +18,7 @@ const Login = ({darkMode, setDarkMode, setIsModalPasswordRecover, notification})
     const [rememberUser, setRememberUser] = useState(false)
     const [formData, setFormData] = useState({})
     const [submitLoading, setSubmitLoading] = useState(false)
-
+    const [isLogged, setIsLogged] = useState(false)
     useEffect(() => {
         if(getLocalStorageItem('remember-user')) {
             setRememberUser(true)
@@ -66,9 +67,11 @@ const Login = ({darkMode, setDarkMode, setIsModalPasswordRecover, notification})
             setFormData(data);
             if(rememberUser) setLocalStorageItem('user', data.email)
             //formik.resetForm(); //limpa o form
-
+            
             setTimeout(() => {
-                setSubmitLoading(false)
+                setSubmitLoading(false);
+                setIsLogged(true)
+                setLocalStorageItem('acess_token', formData)
             },5000);
         }
     });
@@ -126,6 +129,7 @@ const Login = ({darkMode, setDarkMode, setIsModalPasswordRecover, notification})
                     <p className="text-dark-mode">{parameters.admin_parameters_text_dark_mode}</p>
                 </div>
             </div>
+            {isLogged && <Navigate to="/proposta/publico/judicial/recursal" replace={true}/>}
         </div>
     )
 }

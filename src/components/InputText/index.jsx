@@ -9,22 +9,28 @@ const InputTextContainer = ({
     placeholder,
     onChange, 
     value,
-    errorMessage
+    errorMessage,
+    label,
+    disabled
 }) => {
     return(
         <div className={`${className} flex flex-column w-100 pt3 pb3`}>
-            <InputText id={id}
-                name={name}
-                aria-describedby="input_user_email_help"
-                className={isError&&`p-invalid p-d-block`}
-                placeholder={placeholder}
-                onChange={onChange}
-                value={value}/>
-                {isError&&
-                    <small id="input_user_email_help" className="p-error p-d-block">
-                        {errorMessage}
-                    </small>
-                }
+            <span className="p-float-label">
+                <InputText id={id}
+                    name={name}
+                    aria-describedby="input_user_email_help"
+                    className={isError&&`p-invalid p-d-block`}
+                    placeholder={placeholder}
+                    onChange={onChange}
+                    value={value}
+                    disabled={disabled}/>
+                <label htmlFor={id}>{label}</label>
+            </span>
+            {isError&&
+                <small id="input_user_email_help" className="p-error p-d-block">
+                    {errorMessage}
+                </small>
+            }
         </div>
     )
 }
@@ -37,7 +43,9 @@ InputTextContainer.propTypes = {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    label: PropTypes.string,
+    disabled: PropTypes.bool
 }
 
 InputTextContainer.defaultProps = {
@@ -48,7 +56,9 @@ InputTextContainer.defaultProps = {
     placeholder: '',
     onChange: null,
     value: '',
-    errorMessage: ''
+    errorMessage: '',
+    label: '',
+    disabled: false
 }
 
 export default InputTextContainer

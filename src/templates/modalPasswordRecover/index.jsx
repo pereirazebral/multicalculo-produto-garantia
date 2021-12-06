@@ -39,6 +39,7 @@ const ModalPasswordRecover =  ({darkMode, visible, closeModalPasswordRecover, no
                     parameters.admin_parameters_password_recover_sucess_text, 
                     parameters.admin_parameters_showNotification_time
                 )
+                console.info("formData", formData)
                 closeModal()
             },5000);
         }

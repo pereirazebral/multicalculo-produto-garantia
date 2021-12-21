@@ -194,11 +194,16 @@ p{
     .p-datepicker-next-icon,
     .p-datepicker-prev-icon,
     .p-dropdown,
-    .p-dropdown-panel .p-dropdown-items .p-dropdown-item{
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item,
+    .p-autocomplete-panel,
+    .p-autocomplete-items,
+    .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item{
         color: $white;
     }
 
-    
+    .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item:hover{
+        background-color: #007bff;
+    }
 
     .p-inputtext,
     .p-password,
@@ -208,7 +213,9 @@ p{
     .p-datepicker-group,
     .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header,
     .p-dropdown,
-    .p-dropdown-panel{
+    .p-dropdown-panel,
+    .p-autocomplete-items,
+    .p-autocomplete-panel{
         background-color: $background-color-dark;
         border: 1px solid $black-3f4;
         color: $white;

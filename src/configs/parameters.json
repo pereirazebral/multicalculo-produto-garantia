@@ -21,5 +21,7 @@
     "admin_parameters_date_init_term_validity_sucess_text": "A data foi alterada para: ",
     "admin_parameters_date_end_term_validity_sucess_title": "Data final de vigência",
     "admin_parameters_date_end_term_validity_sucess_text": "A data foi alterada para: ",
+    "admin_parameters_autocomplete_company": "Informe a razão social da empresa",
+    "admin_parameters_autocomplete_sucess_title": "Empresa selecionada.",
     "admin_parameters_showNotification_time": 5000
 }
